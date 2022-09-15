@@ -2,6 +2,8 @@
 
     require_once 'db.inc.php';
 
+    extract($_POST);
+    
     $uploaded = false;
 
     $target_dir = '../assets/profiles/';

@@ -119,16 +119,18 @@
 
         function registerUser (first, last, email, password) {
             let user_image = $("#avatar").get(0).files;
+            var fd = new FormData();
+            fd.append('fname', first);
+            fd.append('lname', last);
+            fd.append('email_send', email);
+            fd.append('pwd', password);
+            fd.append('user_img', user_image[0]);
             $.ajax({
                 method: "POST",
+                contentType: false,
+                processData: false,
                 url: "includes/register.inc.php",
-                data: {
-                    user_img: user_image[0],
-                    fname: first,
-                    lname: last,
-                    email_send: email,
-                    pwd: password
-                },
+                data: fd,
                 success: ((data, status) => {
                     // console.log(data);
                     showMessage(data);
