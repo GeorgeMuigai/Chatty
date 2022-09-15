@@ -88,17 +88,17 @@ body {
 }
 
 /* ===== message ===== */
-#message, #sn_message {
+#lg_message, #sn_message {
     background: #00c476;
     padding: 10px;
     color: #07643f;    
     border-radius: 5px;
     display: none;
 }
-#message.visible, #sn_message.visible{
+#lg_message.visible, #sn_message.visible{
     display: block;
 }
-#message.error, #sn_message.error{
+#lg_message.error, #sn_message.error{
     background: #da0f3f;
     color: rgb(70, 7, 7);
 }

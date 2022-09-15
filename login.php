@@ -61,7 +61,7 @@
                     <h2>Chatty</h2>
                 </div>
                 <div class="message-box">
-                    <p class=" " id="message">this is a message</p>
+                    <p class=" " id="lg_message">this is a message</p>
                 </div>
                 <div class="form-group">
                     <label>Email</label>
@@ -72,7 +72,7 @@
                     <input type="password" id="lg_password" placeholder="enter your email">
                 </div>
                 <div class="form-group">
-                    <button>Continue to chat</button>
+                    <button id="btn_login">Continue to chat</button>
                 </div>
                 <p>doesn't have an account? <span id="signup">sign up</span> </p>
             </div>
@@ -82,6 +82,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script>
         let messageTag = $("#sn_message");
+        let lg_message = $("#lg_message");
+
         $("#signup").click(() => {
             $(".sign-up").css('display', 'block');
             $(".login").css('display', 'none');
@@ -94,6 +96,23 @@
         $("#btn_register").click( () => {
             verifySignUp();
         });
+
+        $("#btn_login").click( () => {
+            verifyLogin();
+        })
+
+        function verifyLogin () {
+            let lg_email = $('#login_email').val();
+            let lg_pass = $('#lg_password').val();
+
+            if (empty(lg_email) || empty(lg_pass)) {
+                showLoginMessage("empty");
+            } else if (!isEmail(lg_email)) {
+               showLoginMessage("email");
+            } else {
+                login(lg_email, lg_pass);
+            }
+        }
 
         function verifySignUp () {
             let fname = $("#fname").val();
@@ -134,6 +153,24 @@
                 success: ((data, status) => {
                     // console.log(data);
                     showMessage(data);
+                })
+            });
+        }
+
+        function login (email, password) {
+            $.ajax({
+                url: "includes/login.inc.php",
+                method: "POST",
+                data: {
+                    lg_email: email,
+                    lg_pass: password
+                },
+                success: ((data, status) => {
+                    if (data === "success") {
+                        $(location).attr('href', 'index.php');
+                    }
+                    showLoginMessage(data);
+                    // console.log(data);
                 })
             });
         }
@@ -204,10 +241,35 @@
             }
         }
 
+        function showLoginMessage(message) {
+            if (message === "error") {
+                lg_message.html("email or password incorrect!!");
+                lg_message.addClass("error");
+                lg_message.addClass("visible");
+
+                removeMessage();
+            } else if (message === "empty") {
+                lg_message.html("please fill in all the fields!!");
+                lg_message.addClass("error");
+                lg_message.addClass("visible");
+
+                removeMessage();
+            } else if (message === "email") {
+                lg_message.html("invalid email address!!");
+                lg_message.addClass("error");
+                lg_message.addClass("visible");
+
+                removeMessage();
+            }
+        }
+
         function removeMessage () {
             setTimeout(() => {
                 messageTag.removeClass('error');
                 messageTag.removeClass('visible');
+                
+                lg_message.removeClass('error');
+                lg_message.removeClass('visible');
             }, 3000);
         }
 
