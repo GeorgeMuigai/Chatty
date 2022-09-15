@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #f8f6f8;
+}
+
+.container {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ===== login box ===== */
+.login, .sign-up {
+    padding: 20px;
+    background: #fff;
+    width: fit-content;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    display: none;
+}
+.title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 2px;
+    border-bottom: 1px solid rgb(172, 170, 170);
+}
+.title img {
+    width: 30px;
+    margin-right: 5px;
+}
+
+.name-group {
+    display: flex;
+    align-items: center;
+}
+.name-group .form-group:first-child {
+    margin-right: 10px;
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+.form-group label {
+    margin-bottom: 4px;
+    font-size: 15px;
+}
+.form-group input {
+    padding: 5px 3px;
+    border-radius: 4px;
+    border: 1px solid;
+}
+.form-group button {
+    cursor: pointer;
+    border-radius: 5px;
+    background: #000;
+    color: #fff;
+    padding: 4px 0;
+}
+.login p {
+    font-size: 14px;
+    text-align: center;
+}
+.login span, .sign-up span {
+    color: #de0611;
+    cursor: pointer;
+}
+.login span:hover, .sign-up span:hover {
+    color: #000;
+}
+.file input {
+    border: none;
+}
+
+/* ===== login ===== */
+.login {
+    display: block;
+}
+
+/* ===== message ===== */
+#message {
+    background: #00c476;
+    padding: 10px;
+    color: #07643f;    
+    border-radius: 5px;
+    display: none;
+}
+#message.visible{
+    display: block;
+}
+#message.error{
+    background: #da0f3f;
+    color: #6e061e;
+}
