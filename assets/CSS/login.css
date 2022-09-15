@@ -67,7 +67,7 @@ body {
     color: #fff;
     padding: 4px 0;
 }
-.login p {
+.login p, .sign-up p {
     font-size: 14px;
     text-align: center;
 }
@@ -88,17 +88,17 @@ body {
 }
 
 /* ===== message ===== */
-#message {
+#message, #sn_message {
     background: #00c476;
     padding: 10px;
     color: #07643f;    
     border-radius: 5px;
     display: none;
 }
-#message.visible{
+#message.visible, #sn_message.visible{
     display: block;
 }
-#message.error{
+#message.error, #sn_message.error{
     background: #da0f3f;
-    color: #6e061e;
+    color: rgb(70, 7, 7);
 }
