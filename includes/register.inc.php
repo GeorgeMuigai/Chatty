@@ -30,14 +30,15 @@
         extract($_POST);
 
         $hash_pass = password_hash($pwd, PASSWORD_DEFAULT);
+        $full_name = $fname . ' ' . $lname;
 
-        $reg_user = "INSERT INTO users (first_name, last_name, email, password, avatar) VALUES (?, ?, ?, ?, ?)";
+        $reg_user = "INSERT INTO users (first_name, last_name, full_name, email, password, avatar) VALUES (?, ?, ?, ?, ?, ?)";
 
         if (userExists($email_send, $con)) {
             echo "taken";
         } else {
             if ($stmt = $con->prepare($reg_user)) {
-                $stmt->bind_param("sssss", $fname, $lname, $email_send, $hash_pass, $file_name);
+                $stmt->bind_param("ssssss", $fname, $lname, $full_name, $email_send, $hash_pass, $file_name);
                 $stmt->execute();
 
                 echo "success";

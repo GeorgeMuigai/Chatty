@@ -14,12 +14,14 @@
             $user = $stmt->get_result();
 
             if ($row = $user->fetch_assoc()) {
+                $id = $row['id'];
                 $fname = $row['first_name'];
                 $lname = $row['last_name'];
                 $pass = $row['password'];
                 $avatar = $row['avatar'];
 
                 if (password_verify($lg_pass, $pass)) {
+                    $_SESSION['uid'] = $id;
                     $_SESSION['fname'] = $fname;
                     $_SESSION['lname'] = $lname;
                     $_SESSION['avatar'] = $avatar;
